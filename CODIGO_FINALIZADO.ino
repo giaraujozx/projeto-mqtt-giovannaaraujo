@@ -50,12 +50,13 @@ void setup() {
     //Exibe uma linha em branco 
     Serial.println("");
 
-    //Aguarda 10 segundos
-    delay(500);  
+     
 }
 
 void loop() {
 estado_sensor = digitalRead(pino2); //Efetua a leitura do Pino 2 e armazena o valor obtido na variável  
+   
+   mqttClient.connect("giovannaaraujo");
    
   if (estado_sensor==0){
     Serial.println("O rack esta fechado");
@@ -70,13 +71,10 @@ estado_sensor = digitalRead(pino2); //Efetua a leitura do Pino 2 e armazena o va
   
   Serial.println(estado_sensor); //Exibe no Monitor Serial o Estado do Sensor 
 
-mqttClient.connect("giovannaaraujo");
-
 Serial.println(mensagem);
 
    //Função que verifica a conexão entre o Cliente e o Broker e evita a queda de conexão entre eles.
     mqttClient.loop();
 
-    //Aguarda um período de 0,5 segundos
-    delay(500);
+   
 } 
